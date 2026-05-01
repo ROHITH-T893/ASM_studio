@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ASM Photography | Premium wedding, newborn, maternity, fashion, commercial, and drone photography in Namakkal, Tamil Nadu." name="description"/>
+<meta content="#0f0f0f" name="theme-color"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f0f0f'/%3E%3Cpath d='M20 44V20h8.5c6.7 0 11.5 4.6 11.5 12s-4.8 12-11.5 12H20Zm7-6h1.8c4.1 0 6.4-2.6 6.4-6s-2.3-6-6.4-6H27v12Z' fill='%23d4af37'/%3E%3C/svg%3E" rel="icon"/>
+<meta content="ASM Photography" property="og:title"/>
+<meta content="Premium photography portfolio with mobile-first booking CTAs and refined gallery experiences." property="og:description"/>
+<title>ASM Photography | Premium Photography Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Cormorant+Garamond:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    background: '#0f0f0f',
+                    surface: '#131313',
+                    'surface-elevated': '#171717',
+                    'surface-muted': '#1f1f1f',
+                    'surface-soft': '#262626',
+                    gold: '#d4af37',
+                    'gold-soft': '#f0d68a',
+                    text: '#f5f5f4',
+                    'text-muted': '#b6b1a8',
+                    'text-dim': '#8a847b'
+                },
+                fontFamily: {
+                    display: ['Cormorant Garamond', 'serif'],
+                    body: ['Inter', 'sans-serif']
+                },
+                boxShadow: {
+                    glow: '0 18px 60px rgba(212, 175, 55, 0.12)',
+                    soft: '0 24px 80px rgba(0, 0, 0, 0.35)'
+                },
+                borderRadius: {
+                    xl: '1.25rem',
+                    '2xl': '1.75rem'
+                }
+            }
+        }
+    };
+</script>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background:
+            radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 30%),
+            radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 24%),
+            linear-gradient(180deg, #111111 0%, #0f0f0f 42%, #0a0a0a 100%);
+        color: #f5f5f4;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 96px 96px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 95%);
+        opacity: 0.14;
+        z-index: 0;
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .editorial-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .glass-panel {
+        background: rgba(18, 18, 18, 0.68);
+        backdrop-filter: blur(28px);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+    }
+
+    .section-shell {
+        position: relative;
+        z-index: 1;
+        padding-left: clamp(1rem, 4vw, 2rem);
+        padding-right: clamp(1rem, 4vw, 2rem);
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .image-frame {
+        position: relative;
+        overflow: hidden;
+        background: #1a1a1a;
+    }
+
+    .image-frame img {
+        transition: transform 900ms cubic-bezier(.22,1,.36,1), filter 900ms cubic-bezier(.22,1,.36,1);
+        will-change: transform;
+    }
+
+    .image-frame:hover img,
+    .group:hover .image-frame img {
+        transform: scale(1.05);
+        filter: saturate(1.06) contrast(1.02);
+    }
+
+    .gold-gradient {
+        background: linear-gradient(135deg, #d4af37 0%, #f0d68a 100%);
+    }
+
+    .soft-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .cta-chip {
+        border: 1px solid rgba(212, 175, 55, 0.24);
+        background: rgba(212, 175, 55, 0.08);
+    }
+
+    .nav-link {
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -0.35rem;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(212,175,55,0.95), transparent);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 300ms ease;
+    }
+
+    .nav-link:hover::after {
+        transform: scaleX(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal,
+        .reveal.is-visible,
+        .image-frame img,
+        .group:hover .image-frame img {
+            transition: none;
+            transform: none;
+            filter: none;
+        }
+    }
+</style>
+</head>
+<body class="selection:bg-gold selection:text-black font-body overflow-x-hidden">
+<nav class="fixed top-0 z-50 w-full border-b border-white/5 bg-[#0f0f0f]/75 backdrop-blur-2xl">
+<div class="section-shell mx-auto flex w-full max-w-7xl items-center justify-between gap-6 py-4">
+<a class="flex items-center gap-3 text-white" href="#home" aria-label="ASM Photography home">
+<span class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gold shadow-[0_0_0_1px_rgba(255,255,255,0.05)]">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</span>
+<div>
+<div class="font-display text-2xl font-bold tracking-wide">ASM Photography</div>
+<div class="text-[0.65rem] uppercase tracking-[0.35em] text-text-dim">Namakkal, Tamil Nadu</div>
+</div>
+</a>
+<div class="hidden items-center gap-8 md:flex">
+<a class="nav-link text-sm uppercase tracking-[0.28em] text-text-muted transition-colors hover:text-white" href="#work">Portfolio</a>
+<a class="nav-link text-sm uppercase tracking-[0.28em] text-text-muted transition-colors hover:text-white" href="#services">Services</a>
+<a class="nav-link text-sm uppercase tracking-[0.28em] text-text-muted transition-colors hover:text-white" href="#about">About</a>
+<a class="nav-link text-sm uppercase tracking-[0.28em] text-text-muted transition-colors hover:text-white" href="#contact">Contact</a>
+</div>
+<a class="gold-gradient inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-black shadow-glow transition-transform duration-300 hover:scale-[1.02]" href="tel:+919842574766">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Book Your Shoot</span>
+</a>
+</div>
+</nav>
+
+<main id="home" class="relative pt-28 md:pt-32">
+<section class="section-shell mx-auto max-w-7xl pb-12">
+<div class="editorial-grid items-end">
+<div class="reveal col-span-12 lg:col-span-7">
+<p class="mb-4 inline-flex items-center gap-2 rounded-full cta-chip px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-gold-soft">
+<span class="h-1.5 w-1.5 rounded-full bg-gold"></span>
+Premium photography for life’s defining moments
+</p>
+<h1 class="font-display text-5xl leading-[0.88] tracking-tight text-white sm:text-6xl lg:text-[7rem]">
+Timeless stories,
+<span class="block text-gold">captured beautifully.</span>
+</h1>
+<p class="mt-6 max-w-2xl text-base leading-8 text-text-muted sm:text-lg">
+ASM Photography creates elegant wedding, newborn, maternity, fashion, commercial, and drone visuals with 24+ years of experience in Namakkal, Tamil Nadu. The focus is simple: premium imagery that feels emotional, modern, and built to convert interest into bookings.
+</p>
+<div class="mt-8 flex flex-wrap gap-4">
+<a class="gold-gradient inline-flex items-center gap-2 rounded-full px-6 py-4 font-semibold text-black shadow-glow transition-transform duration-300 hover:scale-[1.02]" href="https://wa.me/919842574766?text=Hi%20ASM%20Photography%2C%20I%20would%20like%20to%20book%20a%20shoot." target="_blank" rel="noreferrer">
+<span class="material-symbols-outlined text-[18px]">edit_calendar</span>
+<span>WhatsApp Booking</span>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full bg-white/6 px-6 py-4 font-semibold text-white transition-colors duration-300 hover:bg-white/10" href="tel:+919842574766">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call Now</span>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full bg-transparent px-6 py-4 font-semibold text-text-muted transition-colors duration-300 hover:text-white" href="#work">
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+<span>View Featured Work</span>
+</a>
+</div>
+</div>
+
+<div class="reveal col-span-12 lg:col-span-5 lg:pl-6">
+<div class="glass-panel image-frame overflow-hidden rounded-[1.75rem] p-3">
+<div class="relative overflow-hidden rounded-[1.4rem]">
+<img alt="Premium wedding couple portrait" class="h-[420px] w-full object-cover object-center" loading="eager" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80"/>
+<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/55 to-transparent p-6">
+<div class="max-w-sm">
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Featured Story</p>
+<h2 class="mt-2 font-display text-3xl text-white">Wedding cinema with a soft editorial finish.</h2>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 grid grid-cols-3 gap-3 text-center">
+<div class="soft-card rounded-2xl px-4 py-5">
+<div class="font-display text-3xl text-gold">24+</div>
+<div class="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-text-dim">Years</div>
+</div>
+<div class="soft-card rounded-2xl px-4 py-5">
+<div class="font-display text-3xl text-gold">500+</div>
+<div class="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-text-dim">Shoots</div>
+</div>
+<div class="soft-card rounded-2xl px-4 py-5">
+<div class="font-display text-3xl text-gold">6</div>
+<div class="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-text-dim">Services</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="reveal mt-8 grid gap-4 md:grid-cols-4">
+<div class="soft-card rounded-2xl px-5 py-5">
+<div class="text-sm uppercase tracking-[0.3em] text-text-dim">Wedding</div>
+<p class="mt-2 text-sm text-text-muted">Candid, cinematic, and timeless coverage.</p>
+</div>
+<div class="soft-card rounded-2xl px-5 py-5">
+<div class="text-sm uppercase tracking-[0.3em] text-text-dim">Newborn</div>
+<p class="mt-2 text-sm text-text-muted">Gentle studio portraits with clean styling.</p>
+</div>
+<div class="soft-card rounded-2xl px-5 py-5">
+<div class="text-sm uppercase tracking-[0.3em] text-text-dim">Maternity</div>
+<p class="mt-2 text-sm text-text-muted">Elegant sessions that feel warm and refined.</p>
+</div>
+<div class="soft-card rounded-2xl px-5 py-5">
+<div class="text-sm uppercase tracking-[0.3em] text-text-dim">Commercial</div>
+<p class="mt-2 text-sm text-text-muted">Brand visuals that sell with clarity.</p>
+</div>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20" id="work">
+<div class="reveal mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+<div>
+<p class="text-xs uppercase tracking-[0.45em] text-gold-soft">Featured Work</p>
+<h2 class="mt-3 font-display text-4xl text-white sm:text-5xl">A portfolio built around emotion and detail.</h2>
+</div>
+<p class="max-w-xl text-sm leading-7 text-text-muted md:text-right">The layout stays clean and image-first so the work does the selling. Each tile uses strong contrast, soft overlays, and hover movement to feel polished on every screen.</p>
+</div>
+<div class="grid gap-4 md:grid-cols-12">
+<div class="reveal md:col-span-7 group image-frame rounded-[1.6rem]">
+<img alt="Wedding couple portrait" class="h-[520px] w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1523438097201-512ae7d59c95?auto=format&fit=crop&w=1400&q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent p-6 flex items-end">
+<div>
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Wedding</p>
+<h3 class="mt-2 font-display text-3xl text-white">Classic ceremonies with cinematic framing.</h3>
+</div>
+</div>
+</div>
+<div class="reveal md:col-span-5 grid gap-4 sm:grid-cols-2 md:grid-cols-1">
+<div class="group image-frame rounded-[1.4rem]">
+<img alt="Newborn photography" class="h-[248px] w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=1200&q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent p-5 flex items-end">
+<div>
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Newborn</p>
+<h3 class="mt-2 font-display text-2xl text-white">Soft, calm, and beautifully lit.</h3>
+</div>
+</div>
+</div>
+<div class="group image-frame rounded-[1.4rem]">
+<img alt="Commercial and fashion shoot" class="h-[248px] w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent p-5 flex items-end">
+<div>
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Commercial</p>
+<h3 class="mt-2 font-display text-2xl text-white">Campaign-ready imagery with polish.</h3>
+</div>
+</div>
+</div>
+<div class="group image-frame rounded-[1.4rem] sm:col-span-2 md:col-span-1">
+<img alt="Maternity portrait" class="h-[248px] w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent p-5 flex items-end">
+<div>
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Maternity</p>
+<h3 class="mt-2 font-display text-2xl text-white">Graceful portraits with depth.</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="reveal mt-4 flex flex-wrap gap-3">
+<span class="rounded-full bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.3em] text-text-muted">Wedding</span>
+<span class="rounded-full bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.3em] text-text-muted">Newborn</span>
+<span class="rounded-full bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.3em] text-text-muted">Maternity</span>
+<span class="rounded-full bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.3em] text-text-muted">Fashion</span>
+<span class="rounded-full bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.3em] text-text-muted">Commercial</span>
+<span class="rounded-full bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.3em] text-text-muted">Drone</span>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20" id="services">
+<div class="reveal mb-12 text-center">
+<p class="text-xs uppercase tracking-[0.45em] text-gold-soft">Services</p>
+<h2 class="mt-3 font-display text-4xl text-white sm:text-5xl">Six core offerings, presented with premium clarity.</h2>
+<p class="mx-auto mt-5 max-w-3xl text-sm leading-7 text-text-muted sm:text-base">Pricing and package details stay easy to scan, with strong CTA placement so couples and families can move from browsing to booking without friction.</p>
+</div>
+<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+<div class="reveal soft-card rounded-[1.4rem] p-7 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/6">
+<span class="material-symbols-outlined text-gold text-3xl">church</span>
+<h3 class="mt-5 font-display text-3xl text-white">Wedding Photography</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Full-day coverage, candid moments, highlight edits, and elegant storytelling that keeps the emotion intact.</p>
+<p class="mt-5 text-xs uppercase tracking-[0.28em] text-gold-soft">Starting from customized packages</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/6">
+<span class="material-symbols-outlined text-gold text-3xl">child_care</span>
+<h3 class="mt-5 font-display text-3xl text-white">Newborn Photography</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Gentle styling, soft tones, and a safe studio approach designed for timeless family keepsakes.</p>
+<p class="mt-5 text-xs uppercase tracking-[0.28em] text-gold-soft">Add-ons for albums and frames</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/6">
+<span class="material-symbols-outlined text-gold text-3xl">pregnant_woman</span>
+<h3 class="mt-5 font-display text-3xl text-white">Maternity Shoots</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Editorial portraits with flattering light, graceful posing, and a calm experience from start to finish.</p>
+<p class="mt-5 text-xs uppercase tracking-[0.28em] text-gold-soft">Styled indoor and outdoor sessions</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/6">
+<span class="material-symbols-outlined text-gold text-3xl">styler</span>
+<h3 class="mt-5 font-display text-3xl text-white">Fashion Photography</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">High-impact visual direction for portraits, lookbooks, and personal branding with premium retouching.</p>
+<p class="mt-5 text-xs uppercase tracking-[0.28em] text-gold-soft">Studio and location shoots</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/6">
+<span class="material-symbols-outlined text-gold text-3xl">storefront</span>
+<h3 class="mt-5 font-display text-3xl text-white">Commercial Shoots</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Brand imagery, product storytelling, and campaign visuals engineered to look sharp across every channel.</p>
+<p class="mt-5 text-xs uppercase tracking-[0.28em] text-gold-soft">Usage rights available</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/6">
+<span class="material-symbols-outlined text-gold text-3xl">flight</span>
+<h3 class="mt-5 font-display text-3xl text-white">Drone Photography</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Wide-angle storytelling for venues, outdoor events, and destination coverage with cinematic aerial perspective.</p>
+<p class="mt-5 text-xs uppercase tracking-[0.28em] text-gold-soft">Ideal for weddings and venues</p>
+</div>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20 bg-white/[0.015]" id="process">
+<div class="editorial-grid items-center gap-y-10">
+<div class="reveal col-span-12 lg:col-span-5">
+<p class="text-xs uppercase tracking-[0.45em] text-gold-soft">How we work</p>
+<h2 class="mt-3 font-display text-4xl text-white sm:text-5xl">A smooth process that keeps the focus on the client experience.</h2>
+<div class="mt-10 space-y-7">
+<div class="flex gap-5">
+<span class="font-display text-4xl text-gold/40">01</span>
+<div>
+<h3 class="text-xl font-semibold text-white">Consultation & planning</h3>
+<p class="mt-2 text-sm leading-7 text-text-muted">We align on the shoot type, mood, references, and timing so the session feels effortless.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="font-display text-4xl text-gold/40">02</span>
+<div>
+<h3 class="text-xl font-semibold text-white">Shoot day direction</h3>
+<p class="mt-2 text-sm leading-7 text-text-muted">Every pose, frame, and light setup is handled to keep people comfortable and the visuals premium.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="font-display text-4xl text-gold/40">03</span>
+<div>
+<h3 class="text-xl font-semibold text-white">Retouching & delivery</h3>
+<p class="mt-2 text-sm leading-7 text-text-muted">Images are refined with a clean editorial finish and delivered for easy sharing and printing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="reveal col-span-12 lg:col-span-7 lg:pl-6">
+<div class="relative overflow-hidden rounded-[1.75rem] glass-panel image-frame">
+<img alt="Editing workflow and camera setup" class="h-[560px] w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1400&q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 rounded-2xl bg-gold px-5 py-4 text-black shadow-glow">
+<div class="font-display text-4xl font-bold">+150%</div>
+<div class="text-[0.65rem] uppercase tracking-[0.3em]">Booking enquiries</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20" id="about">
+<div class="editorial-grid items-center gap-y-10">
+<div class="reveal col-span-12 lg:col-span-6 relative">
+<div class="image-frame overflow-hidden rounded-[1.75rem]">
+<img alt="Photographer portrait in studio" class="h-[620px] w-full object-cover grayscale transition duration-700 hover:grayscale-0" loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1400&q=80"/>
+</div>
+<div class="pointer-events-none absolute left-6 top-6 hidden text-[8rem] font-display font-bold uppercase tracking-[0.2em] text-white/10 md:block">Story</div>
+</div>
+<div class="reveal col-span-12 lg:col-span-5 lg:pl-8">
+<p class="text-xs uppercase tracking-[0.45em] text-gold-soft">About ASM</p>
+<h2 class="mt-3 font-display text-4xl text-white sm:text-5xl">24 years of experience, built around trust and consistency.</h2>
+<p class="mt-6 text-sm leading-8 text-text-muted sm:text-base">
+ASM Photography has spent more than two decades helping families, couples, and brands tell their stories with refined visuals. Based in Namakkal, Tamil Nadu, the studio combines calm direction, premium lighting, and a clean post-production style that keeps the images timeless.
+</p>
+<p class="mt-5 text-sm leading-8 text-text-muted sm:text-base">
+The experience is designed around comfort and conversion: clear communication, quick inquiry paths, and strong CTA placement so visitors can move straight into a booking conversation.
+</p>
+<div class="mt-8 grid gap-4 sm:grid-cols-3">
+<div class="soft-card rounded-2xl px-4 py-5 text-center">
+<div class="font-display text-3xl text-gold">24+</div>
+<div class="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-text-dim">Years</div>
+</div>
+<div class="soft-card rounded-2xl px-4 py-5 text-center">
+<div class="font-display text-3xl text-gold">Namakkal</div>
+<div class="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-text-dim">Tamil Nadu</div>
+</div>
+<div class="soft-card rounded-2xl px-4 py-5 text-center">
+<div class="font-display text-3xl text-gold">High-end</div>
+<div class="mt-1 text-[0.65rem] uppercase tracking-[0.3em] text-text-dim">Visual style</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20 bg-white/[0.015]" id="why-us">
+<div class="reveal mb-10 text-center">
+<p class="text-xs uppercase tracking-[0.45em] text-gold-soft">Why choose ASM</p>
+<h2 class="mt-3 font-display text-4xl text-white sm:text-5xl">The mix of premium feel and dependable delivery.</h2>
+</div>
+<div class="grid gap-5 md:grid-cols-3">
+<div class="reveal soft-card rounded-[1.4rem] p-7">
+<h3 class="text-xl font-semibold text-white">Creative direction</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Each session is guided so the final gallery feels balanced, emotional, and easy to share.</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7">
+<h3 class="text-xl font-semibold text-white">Booking-friendly UX</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">The whole experience is designed to move people from browsing to a call or WhatsApp message with minimal friction.</p>
+</div>
+<div class="reveal soft-card rounded-[1.4rem] p-7">
+<h3 class="text-xl font-semibold text-white">Trust indicators</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Experience, location, service breadth, and strong visual proof all work together to reinforce confidence.</p>
+</div>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20" id="contact">
+<div class="editorial-grid gap-y-10">
+<div class="reveal col-span-12 lg:col-span-5">
+<p class="text-xs uppercase tracking-[0.45em] text-gold-soft">Contact</p>
+<h2 class="mt-3 font-display text-4xl text-white sm:text-5xl">Ready to book your shoot?</h2>
+<p class="mt-5 max-w-xl text-sm leading-8 text-text-muted sm:text-base">Phone and WhatsApp are the fastest way to secure a date. If you prefer the form, send the shoot type and preferred date and the team can follow up quickly.</p>
+<div class="mt-8 space-y-4">
+<a class="flex items-center gap-4 rounded-2xl bg-white/5 px-5 py-4 transition-colors hover:bg-white/8" href="tel:+919842574766">
+<span class="flex h-12 w-12 items-center justify-center rounded-full bg-gold text-black">
+<span class="material-symbols-outlined">call</span>
+</span>
+<div>
+<div class="text-xs uppercase tracking-[0.3em] text-text-dim">Phone</div>
+<div class="text-lg font-semibold text-white">+91 98425 74766</div>
+</div>
+</a>
+<a class="flex items-center gap-4 rounded-2xl bg-white/5 px-5 py-4 transition-colors hover:bg-white/8" href="https://wa.me/919842574766?text=Hi%20ASM%20Photography%2C%20I%20would%20like%20to%20book%20a%20shoot." target="_blank" rel="noreferrer">
+<span class="flex h-12 w-12 items-center justify-center rounded-full bg-gold text-black">
+<span class="material-symbols-outlined">chat</span>
+</span>
+<div>
+<div class="text-xs uppercase tracking-[0.3em] text-text-dim">WhatsApp</div>
+<div class="text-lg font-semibold text-white">Instant booking inquiry</div>
+</div>
+</a>
+</div>
+</div>
+
+<div class="reveal col-span-12 lg:col-span-7 lg:pl-6">
+<div class="grid gap-5 xl:grid-cols-[1.1fr_.9fr]">
+<form class="rounded-[1.75rem] glass-panel p-6 sm:p-8">
+<div class="grid gap-5 md:grid-cols-2">
+<label class="space-y-2">
+<span class="text-xs uppercase tracking-[0.3em] text-text-dim">Name</span>
+<input class="w-full rounded-2xl border-0 bg-white/5 px-4 py-4 text-white placeholder:text-text-dim focus:ring-2 focus:ring-gold/70" placeholder="Your name" type="text"/>
+</label>
+<label class="space-y-2">
+<span class="text-xs uppercase tracking-[0.3em] text-text-dim">Phone</span>
+<input class="w-full rounded-2xl border-0 bg-white/5 px-4 py-4 text-white placeholder:text-text-dim focus:ring-2 focus:ring-gold/70" placeholder="Phone number" type="tel"/>
+</label>
+</div>
+<div class="mt-5 grid gap-5 md:grid-cols-2">
+<label class="space-y-2">
+<span class="text-xs uppercase tracking-[0.3em] text-text-dim">Shoot Type</span>
+<select class="w-full rounded-2xl border-0 bg-white/5 px-4 py-4 text-white focus:ring-2 focus:ring-gold/70">
+<option>Wedding Photography</option>
+<option>Newborn Photography</option>
+<option>Maternity Shoots</option>
+<option>Fashion Photography</option>
+<option>Commercial Shoots</option>
+<option>Drone Photography</option>
+</select>
+</label>
+<label class="space-y-2">
+<span class="text-xs uppercase tracking-[0.3em] text-text-dim">Preferred Date</span>
+<input class="w-full rounded-2xl border-0 bg-white/5 px-4 py-4 text-white focus:ring-2 focus:ring-gold/70" type="date"/>
+</label>
+</div>
+<label class="mt-5 block space-y-2">
+<span class="text-xs uppercase tracking-[0.3em] text-text-dim">Message</span>
+<textarea class="min-h-[140px] w-full rounded-2xl border-0 bg-white/5 px-4 py-4 text-white placeholder:text-text-dim focus:ring-2 focus:ring-gold/70" placeholder="Tell us about your shoot"></textarea>
+</label>
+<button class="mt-6 flex w-full items-center justify-center gap-2 rounded-full gold-gradient px-6 py-4 font-semibold text-black transition-transform duration-300 hover:scale-[1.01]" type="submit">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Inquiry</span>
+</button>
+</form>
+
+<div class="space-y-5">
+<div class="overflow-hidden rounded-[1.75rem] glass-panel p-3">
+<div class="relative flex h-[280px] items-end overflow-hidden rounded-[1.35rem] bg-[radial-gradient(circle_at_top_left,_rgba(212,175,55,0.28),_transparent_35%),linear-gradient(135deg,_#1b1b1b,_#101010_55%,_#0b0b0b)] p-6">
+<div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_45%)]"></div>
+<div class="relative z-10 max-w-sm">
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Google Maps</p>
+<h3 class="mt-3 font-display text-3xl text-white">Namakkal, Tamil Nadu</h3>
+<p class="mt-3 text-sm leading-7 text-text-muted">Visit or schedule a call, and we’ll help you choose the right shoot style and timing for your session.</p>
+<a class="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/16" href="https://www.google.com/maps/search/?api=1&amp;query=Namakkal%2C%20Tamil%20Nadu" target="_blank" rel="noreferrer">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+<span>Open in Google Maps</span>
+</a>
+</div>
+</div>
+</div>
+<div class="soft-card rounded-[1.75rem] p-6">
+<p class="text-xs uppercase tracking-[0.35em] text-gold-soft">Fast response</p>
+<p class="mt-3 text-sm leading-7 text-text-muted">For the quickest reply, use the floating WhatsApp button or tap the call button in the header. Both stay visible for easy booking on mobile.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-shell mx-auto max-w-7xl py-20">
+<div class="reveal relative overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,rgba(212,175,55,0.92),rgba(240,214,138,0.88))] px-6 py-14 text-black sm:px-10 sm:py-16">
+<div class="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+<div>
+<p class="text-xs uppercase tracking-[0.35em] text-black/70">Let’s make it official</p>
+<h2 class="mt-3 font-display text-4xl font-bold sm:text-5xl lg:text-6xl">Book your shoot with confidence.</h2>
+</div>
+<div class="flex flex-wrap gap-4">
+<a class="inline-flex items-center gap-2 rounded-full bg-black px-6 py-4 font-semibold text-white transition-transform hover:scale-[1.02]" href="tel:+919842574766">
+<span class="material-symbols-outlined text-[18px]">call</span>
+<span>Call Now</span>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-black transition-transform hover:scale-[1.02]" href="https://wa.me/919842574766?text=Hi%20ASM%20Photography%2C%20I%27d%20like%20to%20book%20a%20shoot." target="_blank" rel="noreferrer">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp Booking</span>
+</a>
+</div>
+</div>
+<div class="pointer-events-none absolute inset-0 select-none text-black/10">
+<span class="absolute -bottom-10 left-0 text-[8rem] font-display font-bold uppercase tracking-[0.3em] sm:text-[10rem] lg:text-[12rem]">Capture</span>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="border-t border-white/5 bg-[#101010]">
+<div class="section-shell mx-auto max-w-7xl py-14">
+<div class="grid gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+<div class="reveal">
+<div class="font-display text-4xl font-bold text-white">ASM Photography</div>
+<p class="mt-4 max-w-xl text-sm leading-7 text-text-muted">Premium wedding, newborn, maternity, fashion, commercial, and drone photography from Namakkal, Tamil Nadu.</p>
+<p class="mt-6 text-xs uppercase tracking-[0.35em] text-text-dim">© <span id="year">2026</span> ASM Photography. All rights reserved.</p>
+</div>
+<div class="reveal flex flex-col gap-5 lg:items-end">
+<div class="flex flex-wrap gap-5 text-sm uppercase tracking-[0.3em] text-text-muted">
+<a class="transition-colors hover:text-gold" href="#work">Portfolio</a>
+<a class="transition-colors hover:text-gold" href="#services">Services</a>
+<a class="transition-colors hover:text-gold" href="#about">About</a>
+<a class="transition-colors hover:text-gold" href="#contact">Contact</a>
+</div>
+<div class="text-right text-sm leading-7 text-text-muted">
+Namakkal, Tamil Nadu<br/>
+Phone: +91 98425 74766
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+<a class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-3 rounded-full bg-[#25D366] px-5 py-4 font-semibold text-black shadow-soft transition-transform hover:scale-[1.02]" href="https://wa.me/919842574766?text=Hi%20ASM%20Photography%2C%20I%20want%20to%20book%20a%20shoot." target="_blank" rel="noreferrer" aria-label="WhatsApp booking">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span class="hidden sm:inline">WhatsApp</span>
+</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const revealItems = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
+        });
+
+        revealItems.forEach(function (item) {
+            observer.observe(item);
+        });
+
+        var yearNode = document.getElementById('year');
+        if (yearNode) {
+            yearNode.textContent = new Date().getFullYear();
+        }
+    });
+</script>
+</body>
+</html>
