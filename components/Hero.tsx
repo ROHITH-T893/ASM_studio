@@ -10,7 +10,7 @@ export default function Hero() {
             <span className="h-1.5 w-1.5 rounded-full bg-gold"></span>
             Premium photography for life's defining moments
           </p>
-          <h1 className="font-display text-5xl leading-[0.88] tracking-tight text-white sm:text-6xl lg:text-[7rem]">
+          <h1 className="font-playwrite-deutschland text-4xl leading-[0.92] tracking-tight text-white sm:text-5xl lg:text-[5.6rem]">
             Timeless stories,
             <span className="block text-gold">captured beautifully.</span>
           </h1>
